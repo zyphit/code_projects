@@ -19,7 +19,7 @@ GPIO.output(blueLED, GPIO.LOW)
 GPIO.output(yellowLED, GPIO.LOW)
 
 # blink loop
-for i in range(50, 0, -1):
+for i in range(150, 0, -1):
 	GPIO.output(redLED, GPIO.HIGH)
 	time.sleep(i*0.002)
 	GPIO.output(redLED, GPIO.LOW)
