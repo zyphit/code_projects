@@ -13,9 +13,11 @@ int longlist[] = {0,0,0,0,0,0,0,0,0,0};
 int latlist[] = {0,0,0,0,0,0,0,0,0,0};
 int newlong = 0;
 int newlat = 0;
+const int LEDpin = 13;
 
 
 void setup() {
+  pinMode(LEDpin, OUTPUT);
   Serial.begin(9600);
   
   for (int i = 0; i < 10; i++) {
@@ -56,6 +58,9 @@ void updatecoords() {
       latlist[i] = latlist[i - 1];
     }
     latlist[0] = newlat;
+    digitalWrite(LEDpin,HIGH);
+    delay(250);
+    digitalWrite(LEDpin,LOW);
   }
 }
 
