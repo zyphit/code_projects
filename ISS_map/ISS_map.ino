@@ -6,8 +6,11 @@
     For now the results are printed to the serial monitor.  Eventually the sketch
     will instead use the serial data to update a 16x8 LED matrix to show the
     position of the ISS
-*/
 
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include "Adafruit_LEDBackpack.h"
+*/
 
 int longlist[] = {0,0,0,0,0,0,0,0,0,0};
 int latlist[] = {0,0,0,0,0,0,0,0,0,0};
@@ -19,6 +22,8 @@ const int LEDpin = 13;
 void setup() {
   pinMode(LEDpin, OUTPUT);
   Serial.begin(9600);
+  
+  //matrix.begin(0x70);   //initialize LED matrix at 0x70 on HT16K33 LED matrix driver board
   
   for (int i = 0; i < 10; i++) {
     longlist[i] = i;
@@ -89,8 +94,13 @@ void displaymatrix() {
     Serial.println(latlist[i]);
   }
   Serial.println();
- 
-
+    /*      In theory, this should illuminate the LEDs that correspond to the last ten ISS coordinates
+            Needs testing!
+ for (int i = 0; i < 10; i++){
+     matrix.displaybuffer(longlist[i], latlist[i]);
+ }
+ matrix.writeDisplay();
+ */
 }
 
 
