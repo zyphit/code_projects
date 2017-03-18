@@ -2,6 +2,8 @@ import requests
 import csv
 import math
 import time
+import serial
+
 
 url = "http://astroviewer-sat2a.appspot.com/orbit"
 lastsave = 0
@@ -44,7 +46,8 @@ def ISSLATLONG():
     grid_long = float(stn_long) + 180
 # divide by LED cell weidth, and round up for cell number.
     grid_x = math.ceil(grid_long/22.5)
-
+# send grid coords to Arduino, hopefully in the form "x,y"
+    ser.write('grid_x,",",grid_y'.encode('utf-8'))
     print('Map grid ',grid_x,' ',grid_y)
 
 
@@ -54,6 +57,9 @@ def ISSLATLONG():
 # See about adding a timeout condition so that if the script is unable
 # to access the url then another character is sent to the arduino
 # and a "los telemetry" light is activated.
+
+#set up serial connectino to arduino
+ser = serial.Serial('dev/ttyUSB0', 9600)
 
 while 1:
     if time.time() - lastsave > check_interval:
