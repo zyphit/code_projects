@@ -7,7 +7,7 @@ import serial
 
 url = "http://astroviewer-sat2a.appspot.com/orbit"
 lastsave = 0
-check_interval = 120
+check_interval = 240
 start_time = time.time()
 step = 0
 
