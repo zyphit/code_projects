@@ -15,7 +15,8 @@
 
 
 const int LEDpin = 13;
-
+int newlong = 0;
+int newlat = 0;
 
 void setup() {
   pinMode(LEDpin, OUTPUT);
@@ -35,11 +36,25 @@ void setup() {
 }
 
 void loop() {
-
+/*
   if(Serial.available()){
     blink(Serial.read() - '0');  //automagically converts the character '1'-'9' to decimal 1-9
   }
   delay(500);
+}*/
+
+while (Serial.available() > 0) {
+    string latlong = Serial.readString()
+    
+    //look for the next valid interger in the incoming serial stream:
+    //Should be sent in the form "x,y"
+    //newlong = Serial.parseInt();
+    //newlat = Serial.parseInt();
+    blink(newlong);
+    delay(1000);
+    blink(newlat);
+    delay(1000);
+  }
 }
 
 void blink(int numberofTimes) {

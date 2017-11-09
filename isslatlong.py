@@ -47,7 +47,7 @@ def ISSLATLONG():
 # divide by LED cell weidth, and round up for cell number.
     grid_x = math.ceil(grid_long/22.5)
 # send grid coords to Arduino, hopefully in the form "x,y"
-    ser.write('grid_x,",",grid_y'.encode('utf-8'))
+    #ser.write('grid_x,",",grid_y'.encode('utf-8'))
     print('Map grid ',grid_x,' ',grid_y)
 
 
@@ -59,7 +59,7 @@ def ISSLATLONG():
 # and a "los telemetry" light is activated.
 
 #set up serial connectino to arduino
-ser = serial.Serial('dev/ttyUSB0', 9600)
+#ser = serial.Serial('dev/ttyUSB0', 9600)
 
 while 1:
     if time.time() - lastsave > check_interval:
