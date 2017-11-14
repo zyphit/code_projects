@@ -7,7 +7,7 @@ import serial
 
 url = "http://astroviewer-sat2a.appspot.com/orbit"
 lastsave = 0
-check_interval = 240
+check_interval = 120
 start_time = time.time()
 step = 0
 
@@ -66,6 +66,7 @@ while 1:
         lastsave = time.time()
         if step == 0:
             print('This is the first measurement')
+            step = step + 1
         else:
             print('Number of readings: ',step)
             print('Mission Time: ',(round((lastsave-start_time),1)/60),'minutes')
